@@ -1,4 +1,4 @@
-const { SlashCommandBuilder } = require("discord.js");
+const { SlashCommandBuilder, PermissionFlagsBits } = require("discord.js");
 const fs = require("fs");
 
 const verifiedUsers = require("../verifiedAccount.json"); // BDD
@@ -9,6 +9,7 @@ module.exports = {
     .setDescription(
       "Retire un utilisateur de la liste d'utilisateurs ayant effectué l'activité initiation."
     )
+    .setDefaultMemberPermissions(PermissionFlagsBits.Administrator)
     .addUserOption((option) =>
       option
         .setName("utilisateur")
