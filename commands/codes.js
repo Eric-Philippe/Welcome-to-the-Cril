@@ -7,11 +7,9 @@ module.exports = {
   data: new SlashCommandBuilder()
     .setName("codes")
     .setDescription("Affiche tous les codes permettant de faire l'initiation !")
+    .setDefaultMemberPermissions(PermissionFlagsBits.Administrator)
     .addSubcommand((subcommand) =>
-      subcommand
-        .setName("display")
-        .setDescription("Affiche tous les codes")
-        .setDefaultMemberPermissions(PermissionFlagsBits.Administrator)
+      subcommand.setName("display").setDescription("Affiche tous les codes")
     )
     .addSubcommand((subcommand) =>
       subcommand
@@ -19,7 +17,6 @@ module.exports = {
         .setDescription(
           "Ajoute un code à la liste sous la forme XXXXX Ex: R2D2A"
         )
-        .setDefaultMemberPermissions(PermissionFlagsBits.Administrator)
         .addStringOption((option) =>
           option
             .setName("code")
@@ -33,7 +30,6 @@ module.exports = {
       subcommand
         .setName("remove")
         .setDescription("Retire un code de la liste.")
-        .setDefaultMemberPermissions(PermissionFlagsBits.Administrator)
         .addStringOption((option) =>
           option
             .setName("code")
