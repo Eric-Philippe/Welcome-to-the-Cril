@@ -1,0 +1,163 @@
+{
+  "Questions": [
+    {
+      "title": "Question 1 : Look at the screenshot of Résacril. Where do you need to go to check if your activity has been validated or look at your future reservations?",
+      "answers": ["Recap et planning ", " Coaching ", " Moodle "],
+      "good_answers": [0],
+      "imgURL": " https://cdn.discordapp.com/attachments/986200113523343391/1015192143813419079/unknown.png ",
+      "linkURL": "http://resacril.iut-tlse3.fr/etudiant/recapitulatifPlanningEtudiant/ "
+    },
+
+    {
+      "title": "Question 2 : Oh no! You booked a coaching session next week in Spanish by mistake! What do you do?",
+      "answers": [
+        "Go on resacril and cancel ",
+        " Never mind, not important ",
+        " Go and try to learn Spanish "
+      ],
+      "good_answers": [0],
+      "imgURL": " https://cdn.discordapp.com/attachments/986200113523343391/1015193311209865266/unknown.png ",
+      "linkURL": "http://resacril.iut-tlse3.fr/etudiant/recapitulatifPlanningEtudiant/ "
+    },
+
+    {
+      "title": "Question 3 : What do you do if you realize you can’t make it to a session you booked the same day and can’t cancel on Résacril?",
+      "answers": [
+        "Call your English teacher to explain",
+        " Nothing",
+        "Write an email or a DM to someone at the CRIL to cancel"
+      ],
+      "good_answers": [2],
+      "imgURL": " https://cdn.discordapp.com/attachments/986200113523343391/1015224452964958308/unknown.png ",
+      "linkURL": "http://resacril.iut-tlse3.fr/etudiant/recapitulatifPlanningEtudiant/ "
+    },
+
+    {
+      "title": "Question 4 : What do you need to do on Moodle for the CRIL?",
+      "answers": [
+        "Nothing",
+        "Fill in a report for each coaching session, within two days",
+        "Fill in a report for everything you do at the CRIL, immediately"
+      ],
+      "good_answers": [1],
+      "imgURL": " https://cdn.discordapp.com/attachments/986200113523343391/1015225507333279846/unknown.png ",
+      "linkURL": "https://moodle.iut-tlse3.fr/"
+    },
+
+    {
+      "title": "Question 5 : In your opinion, why does the CRIL staff ask students to fill in the coaching reports on Moodle?",
+      "answers": [
+        "To help students and coaches track difficulties and progress",
+        "To take attendance",
+        "To torture students"
+      ],
+      "good_answers": [0],
+      "imgURL": " https://cdn.discordapp.com/attachments/986200113523343391/1015226464666406942/unknown.png ",
+      "linkURL": " https://moodle.iut-tlse3.fr/"
+    },
+
+    {
+      "title": "Question 6 : You like the TV show Rick and Morty and believe it would be easier for you to participate in a CRIL conversation on this topic. What do you do?",
+      "answers": [
+        "Perform a magic dance and hope for the best",
+        "Ask your friends to talk about it with you",
+        "Tell Marie or Louise from the CRIL so they can organize it"
+      ],
+      "good_answers": [2],
+      "imgURL": " https://cdn.discordapp.com/attachments/986200113523343391/1015227956995555380/unknown.png "
+    },
+
+    {
+      "title": "Question 7 : Choose the best description of the photo",
+      "answers": [
+        "A grey and white cat is sitting on a chair, there is a pink/purple light in the background",
+        "A white cat is thinking about philosophical concepts",
+        "The cat in the photo loves you",
+        "A very cute cat is looking at a mouse"
+      ],
+      "good_answers": [0],
+      "imgURL": " https://cdn.discordapp.com/attachments/986200113523343391/1015196112086376519/1662111987225.jpg "
+    },
+
+    {
+      "title": "Question 8 : Watch the video (you can replay it if you want). What is the best description of the scene?",
+      "answers": [
+        "Two friends are having tea together",
+        "The blonde woman is talking about her book",
+        "The woman who doesn’t wear glasses is asking questions"
+      ],
+      "good_answers": [2],
+      "linkURL": " https://www.youtube.com/watch?v=d_TDMhL-0og"
+    },
+
+    {
+      "title": "Question 9 : Why is the woman with brown hair writing in a notebook?",
+      "answers": [
+        "She’s interviewing the one with the glasses",
+        "She’s taking notes for a class",
+        "She has a bad memory "
+      ],
+      "good_answers": [0],
+      "linkURL": "https://www.youtube.com/watch?v=d_TDMhL-0og"
+    },
+
+    {
+      "title": "Question 10 : Anna, the woman with the glasses, says about Val : “we hardly knew each other.” What does that mean?",
+      "answers": [
+        "They were best friends",
+        "She has never met him",
+        " She knew him but wasn’t very close"
+      ],
+      "good_answers": [2],
+      "linkURL": "https://www.youtube.com/watch?v=d_TDMhL-0og "
+    },
+
+    {
+      "title": "Question 11 : Watch the video below for 10 seconds and fill in the blank : I can see a talented person, and remove the personality from the professional ------",
+      "answers": ["Cup of teas", " Qualities", " Green peas"],
+      "good_answers": [1],
+      "linkURL": " https://youtu.be/d_TDMhL-0og?t=15 "
+    },
+
+    {
+      "title": "Question 12 : Watch the video below for 5 seconds and fill in the blank : Is there someone else, someone better to --------- ------- on who you were before? ",
+      "answers": ["Share light", "Say fight", "Shed light"],
+      "good_answers": [2],
+      "linkURL": "https://youtu.be/d_TDMhL-0og?t=70"
+    },
+
+    {
+      "title": "Question 13 : What does ‘shed light’ mean?",
+      "answers": [
+        "Give more information",
+        "Switch on a lamp",
+        "Make her answer"
+      ],
+      "good_answers": [0],
+      "linkURL": "https://youtu.be/d_TDMhL-0og?t=70"
+    },
+
+    {
+      "title": "Question 14 : What does this English expression mean : Pigs might fly",
+      "answers": [
+        "Les cochons volent bas",
+        "Un jour les cochons prendront l’avion",
+        "Quand les poules auront des dents",
+        "La réponse D"
+      ],
+      "good_answers": [2],
+      "imgURL": " https://cdn.discordapp.com/attachments/986200113523343391/1015211817779343430/flying_pig_1.png"
+    },
+
+    {
+      "title": "Question 15 : Final question : What is the airspeed velocity of an unladen swallow?",
+      "answers": [
+        "What ? I don’t know that!",
+        "What do you mean, swallow?",
+        "An African or a European swallow?"
+      ],
+      "good_answers": [2],
+      "imgURL": "https://cdn.discordapp.com/attachments/986200113523343391/1015252108406177882/unknown.png"
+    }
+  ]
+}
