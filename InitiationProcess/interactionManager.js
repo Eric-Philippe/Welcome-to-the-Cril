@@ -27,7 +27,7 @@ module.exports = {
     try {
       await i.reply({
         content: content,
-        files: ["./assets/Helper/Support-Salon-Textuel-Vocaux"],
+        files: ["./assets/Helper/Support-Salon-Textuel-Vocaux.pdf"],
         ephemeral: true,
       });
     } catch (err) {
