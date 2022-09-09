@@ -44,7 +44,7 @@ module.exports = {
       `Merci de rejoindre la canal vocal suivant : <#${channel.id}> dans la catégorie` +
       "``" +
       channel.parent.name.replace("/─/g", "") +
-      "`` !";
+      "`` ! \n Une fois cela fait, n'hésite pas à revenir sur ce message pour avoir de l'aide si tu as besoin !";
     //Create an embed
     let embed = new Discord.EmbedBuilder()
       .setColor("#0099ff")
