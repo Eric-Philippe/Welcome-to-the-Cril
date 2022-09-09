@@ -92,7 +92,7 @@ module.exports = class MCQ {
             let embedF = new Discord.EmbedBuilder()
               .setColor("DA0000")
               .setDescription("❌ | Mauvaise réponse !")
-              .setFooter({ text: "Merci de réésayer !" });
+              .setFooter({ text: "Merci de réessayer !" });
             await this.channel.send({ embeds: [embedF] }).then((m) => {
               setTimeout(() => {
                 m.delete();
