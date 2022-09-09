@@ -56,11 +56,19 @@ module.exports = class EntrySystem {
     // Setup a new message asking for a code
     this.msg = await sendWelcomeMessage(this.channel, this.member);
     // If the user send a code or skip the step
-    let value = await Promise.race([
-      this.messageCodeCollector(this.channel),
-      this.buttonCollector(this.msg),
-    ]);
-    this.clearCollectors();
+    let value;
+    do {
+      value = await Promise.race([
+        this.messageCodeCollector(this.channel),
+        this.buttonCollector(this.msg),
+      ]);
+      if (value.customId == "ive_a_code") {
+        this.channel.send(
+          `Le code se trouve dans la Description de l'activité réservée, que vous retrouverez dans le mail de confirmation suite à votre réservation" noreply@iut-tlse3.fr"`
+        );
+      }
+      this.clearCollectors();
+    } while (!value || value.customId == "ive_a_code");
     // If a valid code is entered
     if (
       value === "good_code" &&
@@ -248,7 +256,7 @@ module.exports = class EntrySystem {
             .then((m) => {
               setTimeout(() => {
                 if (m) m.delete();
-              }, 500);
+              }, 4500);
             });
           resolve(this.messageCodeCollector(channel));
         }

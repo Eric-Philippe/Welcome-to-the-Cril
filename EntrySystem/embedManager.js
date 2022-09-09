@@ -35,8 +35,13 @@ module.exports = {
       let row = new Discord.ActionRowBuilder().addComponents(
         new Discord.ButtonBuilder()
           .setCustomId("launch_process")
-          .setLabel("Entrer sur le serveur !")
+          .setLabel("Je n'ai pas de code !")
           .setEmoji("🪄")
+          .setStyle(Discord.ButtonStyle.Primary),
+        new Discord.ButtonBuilder()
+          .setCustomId("ive_a_code")
+          .setLabel("J'ai un code !")
+          .setEmoji("📇")
           .setStyle(Discord.ButtonStyle.Success)
       );
 
