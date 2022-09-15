@@ -62,11 +62,7 @@ module.exports = class EntrySystem {
         this.messageCodeCollector(this.channel),
         this.buttonCollector(this.msg),
       ]);
-      if (value.customId == "ive_a_code") {
-        this.channel.send(
-          `Entrez et envoyez en bas le code qui se trouve dans la Description de l'activité réservée, que vous retrouverez dans le mail de confirmation suite à votre réservation envoyé par : "noreply@iut-tlse3.fr"`
-        );
-      }
+
       this.clearCollectors();
     } while (!value || value.customId == "ive_a_code");
     // If a valid code is entered
@@ -200,8 +196,14 @@ module.exports = class EntrySystem {
 
       collector.on("collect", async (i) => {
         if (i.member.id === this.userID) {
+          if (i.customId == "ive_a_code") {
+            this.channel.send(
+              `Entrez et envoyez en bas le code qui se trouve dans la Description de l'activité réservée, que vous retrouverez dans le mail de confirmation suite à votre réservation envoyé par : "noreply@iut-tlse3.fr"`
+            );
+          } else {
+            resolve(i);
+          }
           i.deferUpdate();
-          resolve(i);
         }
       });
 
@@ -244,7 +246,7 @@ module.exports = class EntrySystem {
               .then((m) => {
                 setTimeout(() => {
                   if (m) m.delete();
-                }, 4500);
+                }, 7500);
               });
             resolve(this.messageCodeCollector(channel));
           }
@@ -256,12 +258,10 @@ module.exports = class EntrySystem {
             .then((m) => {
               setTimeout(() => {
                 if (m) m.delete();
-              }, 4500);
+              }, 7500);
             });
           resolve(this.messageCodeCollector(channel));
         }
-
-        msg.delete();
       });
     });
   }

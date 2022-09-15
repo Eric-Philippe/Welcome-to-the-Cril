@@ -108,6 +108,7 @@ module.exports = class MCQ {
                 }, 2000);
               });
             }
+            console.log(this.wrongAnswers);
             if (this.wrongAnswers % 3 == 0) {
               this.channel.send(
                 "Merci de consulter correctement les différentes ressources à votre disposition afin de ne pas juste cliquer au hasard ..."
@@ -118,7 +119,6 @@ module.exports = class MCQ {
         this.#nextStep();
       } while (this.isLaunched);
       let timerResolve = this.timer > 0 ? this.transformTimer() : this.timer;
-      s;
       resolve([timerResolve, this.wrongAnswers]);
     });
   }

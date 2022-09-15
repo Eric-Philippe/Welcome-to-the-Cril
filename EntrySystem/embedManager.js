@@ -16,7 +16,7 @@ module.exports = {
         .setTimestamp()
         .setTitle("Bienvenue sur le serveur !")
         .setDescription(
-          "Bienvenue sur le serveur du centre de Langue ! \n" +
+          "Bienvenue sur le serveur du centre de Langue ! \n\n" +
             '**📇 |  Si vous êtes inscrit à une activité découverte, merci de cliquer sur le bouton vert "Activité Découverte"** \n\n' +
             '🪄 | Sinon, si cela ne vous dit strictement __rien__ merci de simplement cliquer sur le bouton bleu "Entrée Directe" !'
         )

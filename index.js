@@ -19,7 +19,7 @@ const { client } = require("./client");
 
 client.once("ready", () => {
   client.user.setActivity("👋 Salutations, Voyageurs !");
-  console.log(`Logged on ${client.user.tag}!`);
+  console.log(`%cLogged on ${client.user.tag}!`, "color: red;");
 });
 
 client.commands = new Collection();
@@ -54,16 +54,6 @@ client.on("interactionCreate", async (interaction) => {
 
 client.on("messageCreate", async (message) => {
   if (message.author.bot) return;
-  if (message.content == "clear") {
-    // Delete as many message as possible
-    let messages = await message.channel.messages.fetch({ limit: 100 });
-    messages.forEach((m) => {
-      m.delete();
-    });
-  }
-  if (message.content == "aled") {
-    message.hasThread();
-  }
 });
 /**
  * New Member Event

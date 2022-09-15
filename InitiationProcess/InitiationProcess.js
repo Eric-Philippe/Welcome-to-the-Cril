@@ -246,7 +246,7 @@ module.exports = class InitiationProcess {
       let resolvedValue = await EnglishQCM.start().catch((e) => {});
       if (!resolvedValue) return this.clearProcess("TIME");
       this.timeElapsed = resolvedValue[0];
-      this.mistakes = resolvedValue[1];
+      this.mistakes = String(resolvedValue[1]);
       await this.endProcess(infos);
     }
   }
@@ -273,7 +273,7 @@ module.exports = class InitiationProcess {
     // Setup the nickname with the informations from the Input System
     await newMember.setNickname(informations.join(" "));
     // Delete the Self Channel
-    this.targetChannel.delete();
+    if (this.targetChannel) this.targetChannel.delete();
     // Delete the user from the db
     verifiedUsers.bypassEntry.splice(
       verifiedUsers.bypassEntry.indexOf(this.userID),
@@ -435,6 +435,7 @@ module.exports = class InitiationProcess {
       this.collectors.push(collector);
       // Launch the collector
       collector.on("collect", async (member) => {
+        console.log("VC Joined !");
         resolve(member);
       });
       // When the collector is finished
@@ -593,11 +594,7 @@ module.exports = class InitiationProcess {
   async clearProcess(reason) {
     await this.cleanMessages(); // Clean all the messages
     await this.clearCollectors(); // Clear all the collectors
-    if (this.targetChannel) {
-      if (this.targetChannel.parentId == "1001208591862206567") {
-        this.targetChannel.delete();
-      }
-    }
+
     // Load the defaults values for the Logs Embed
     let embed = new Discord.EmbedBuilder()
       .setColor("Orange")
@@ -616,6 +613,11 @@ module.exports = class InitiationProcess {
       );
     // If the user leaved the process because of a time limit
     if (reason === "TIME") {
+      if (this.targetChannel) {
+        if (this.targetChannel.parentId == "1001208591862206567") {
+          this.targetChannel.delete();
+        }
+      }
       embed
         .setTitle("Un utilisateur s'est fait time out")
         .setDescription(
@@ -639,6 +641,11 @@ module.exports = class InitiationProcess {
           console.warn("Can't send msg to user");
         });
     } else if (reason == "LEAVE") {
+      if (this.targetChannel) {
+        if (this.targetChannel.parentId == "1001208591862206567") {
+          this.targetChannel.delete();
+        }
+      }
       embed
         .setTitle("L'utilisateur a quitté le processus")
         .setDescription(
@@ -646,6 +653,7 @@ module.exports = class InitiationProcess {
         )
         .setThumbnail("https://tenor.com/view/suicide-gif-14427950");
     } else {
+      this.normalLeave = true;
       embed
         .setTitle("Terminé !")
         .setDescription("L'utilisateur a fini correctement le processus !")
@@ -658,7 +666,7 @@ module.exports = class InitiationProcess {
             inline: true,
           },
           {
-            name: "Nombre d'erreurs au cours de la compréhension : ",
+            name: "Nombre d'erreurs : ",
             value: this.mistakes,
             inline: true,
           }
@@ -667,7 +675,6 @@ module.exports = class InitiationProcess {
     // Get the logs channel and send the embed
     await client.channels.cache.get(logsChannel).send({ embeds: [embed] });
     // Kick the user from the guild
-    this.normalLeave = true;
     await this.member.kick();
   }
 };
