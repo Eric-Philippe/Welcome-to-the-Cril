@@ -103,6 +103,8 @@ module.exports = class InitiationProcess {
     this.step = 0;
     /** @type {Boolean} */
     this.normalLeave = false;
+    /** @type {Number} */
+    this.mistakes = 0;
   }
   /**
    * Main Asynchronous Process for all the steps
@@ -241,8 +243,10 @@ module.exports = class InitiationProcess {
       );
       EnglishQCM.selectQuestionsDatabase(1);
       EnglishQCM.setInstructions(embedEnglish(this.member));
-      this.timeElapsed = await EnglishQCM.start().catch((e) => {});
-      if (!this.timeElapsed) return this.clearProcess("TIME");
+      let resolvedValue = await EnglishQCM.start().catch((e) => {});
+      if (!resolvedValue) return this.clearProcess("TIME");
+      this.timeElapsed = resolvedValue[0];
+      this.mistakes = resolvedValue[1];
       await this.endProcess(infos);
     }
   }
@@ -589,6 +593,11 @@ module.exports = class InitiationProcess {
   async clearProcess(reason) {
     await this.cleanMessages(); // Clean all the messages
     await this.clearCollectors(); // Clear all the collectors
+    if (this.targetChannel) {
+      if (this.targetChannel.parentId == "1001208591862206567") {
+        this.targetChannel.delete();
+      }
+    }
     // Load the defaults values for the Logs Embed
     let embed = new Discord.EmbedBuilder()
       .setColor("Orange")
@@ -629,17 +638,31 @@ module.exports = class InitiationProcess {
         .catch((e) => {
           console.warn("Can't send msg to user");
         });
+    } else if (reason == "LEAVE") {
+      embed
+        .setTitle("L'utilisateur a quitté le processus")
+        .setDescription(
+          "L'utilisateur a leave le serveur au milieu du processus ..."
+        )
+        .setThumbnail("https://tenor.com/view/suicide-gif-14427950");
     } else {
       embed
         .setTitle("Terminé !")
         .setDescription("L'utilisateur a fini correctement le processus !")
         .setThumbnail(redLogo);
       if (this.code && this.timeElapsed)
-        embed.addFields({
-          name: "Temps passé sur la compréhension : ",
-          value: this.timeElapsed,
-          inline: true,
-        });
+        embed.addFields(
+          {
+            name: "Temps passé sur la compréhension : ",
+            value: this.timeElapsed,
+            inline: true,
+          },
+          {
+            name: "Nombre d'erreurs au cours de la compréhension : ",
+            value: this.mistakes,
+            inline: true,
+          }
+        );
     }
     // Get the logs channel and send the embed
     await client.channels.cache.get(logsChannel).send({ embeds: [embed] });

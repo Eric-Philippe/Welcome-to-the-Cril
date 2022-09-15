@@ -64,7 +64,7 @@ module.exports = class EntrySystem {
       ]);
       if (value.customId == "ive_a_code") {
         this.channel.send(
-          `Le code se trouve dans la Description de l'activité réservée, que vous retrouverez dans le mail de confirmation suite à votre réservation" noreply@iut-tlse3.fr"`
+          `Entrez et envoyez en bas le code qui se trouve dans la Description de l'activité réservée, que vous retrouverez dans le mail de confirmation suite à votre réservation envoyé par : "noreply@iut-tlse3.fr"`
         );
       }
       this.clearCollectors();

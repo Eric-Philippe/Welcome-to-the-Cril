@@ -17,9 +17,8 @@ module.exports = {
         .setTitle("Bienvenue sur le serveur !")
         .setDescription(
           "Bienvenue sur le serveur du centre de Langue ! \n" +
-            "**Faites-vous partie d'une activité initiation ? ** \n\n" +
-            "📇 | Si **OUI**, merci d'entrer le code reçu dans votre boite mail étudiante par l'adresse __cril.langues@iut-tlse3.fr__ ! \n\n" +
-            '🪄 | Sinon, si cela ne te dit strictement __rien__ merci de simplement cliquer sur le bouton vert "Entrer sur le serveur" !'
+            '**📇 |  Si vous êtes inscrit à une activité découverte, merci de cliquer sur le bouton vert "Activité Découverte"** \n\n' +
+            '🪄 | Sinon, si cela ne vous dit strictement __rien__ merci de simplement cliquer sur le bouton bleu "Entrée Directe" !'
         )
         .setThumbnail(whiteLogo)
         .setAuthor({
@@ -35,12 +34,12 @@ module.exports = {
       let row = new Discord.ActionRowBuilder().addComponents(
         new Discord.ButtonBuilder()
           .setCustomId("launch_process")
-          .setLabel("Je n'ai pas de code !")
+          .setLabel("Entrée Directe !")
           .setEmoji("🪄")
           .setStyle(Discord.ButtonStyle.Primary),
         new Discord.ButtonBuilder()
           .setCustomId("ive_a_code")
-          .setLabel("J'ai un code !")
+          .setLabel("Activité Découverte")
           .setEmoji("📇")
           .setStyle(Discord.ButtonStyle.Success)
       );

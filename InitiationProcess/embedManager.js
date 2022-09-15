@@ -49,8 +49,8 @@ module.exports = {
     let embed = new Discord.EmbedBuilder()
       .setColor("#0099ff")
       .setTitle(`Activité initiation ${member.user.username} - Vocal`)
-      .setDescription(txt);
-    // Thumbnail with an icon of a speaker
+      .setDescription(txt)
+      .setThumbnail(member.user.avatarURL());
 
     let row = new Discord.ActionRowBuilder().addComponents(
       new Discord.ButtonBuilder()
@@ -74,7 +74,8 @@ module.exports = {
       let embed = new Discord.EmbedBuilder()
         .setColor("#ff0000")
         .setTitle(`Activité initiation ${member.user.username} - Vocal`)
-        .setDescription(txt);
+        .setDescription(txt)
+        .setThumbnail(member.user.avatarURL());
 
       let row = new Discord.ActionRowBuilder().addComponents(
         new Discord.ButtonBuilder()

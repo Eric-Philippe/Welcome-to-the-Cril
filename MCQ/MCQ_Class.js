@@ -42,6 +42,8 @@ module.exports = class MCQ {
     this.messages = [];
     /** @type {Array.<Discord.Collector>} */
     this.collectors = [];
+    /** @type {Number} */
+    this.wrongAnswers = 0;
   }
   /** =================== MAIN_PROCESS =================== */
   async start() {
@@ -87,6 +89,7 @@ module.exports = class MCQ {
               }, 3500);
             });
           } else {
+            this.wrongAnswers++;
             notAnsweredWell++;
             wellAnswered = false;
             let embedF = new Discord.EmbedBuilder()
@@ -105,11 +108,18 @@ module.exports = class MCQ {
                 }, 2000);
               });
             }
+            if (this.wrongAnswers % 3 == 0) {
+              this.channel.send(
+                "Merci de consulter correctement les différentes ressources à votre disposition afin de ne pas juste cliquer au hasard ..."
+              );
+            }
           }
         } while (!wellAnswered);
         this.#nextStep();
       } while (this.isLaunched);
-      resolve(this.timer > 0 ? this.transformTimer() : this.timer);
+      let timerResolve = this.timer > 0 ? this.transformTimer() : this.timer;
+      s;
+      resolve([timerResolve, this.wrongAnswers]);
     });
   }
 
