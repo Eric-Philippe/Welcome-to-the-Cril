@@ -651,7 +651,9 @@ module.exports = class InitiationProcess {
         .setDescription(
           "L'utilisateur a leave le serveur au milieu du processus ..."
         )
-        .setThumbnail("https://tenor.com/view/suicide-gif-14427950");
+        .setThumbnail(
+          "https://cdn.discordapp.com/attachments/814908646138970122/1020055974607863849/suicide.gif"
+        );
     } else {
       this.normalLeave = true;
       embed
