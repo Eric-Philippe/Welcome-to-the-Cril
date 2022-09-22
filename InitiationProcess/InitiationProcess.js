@@ -120,7 +120,7 @@ module.exports = class InitiationProcess {
       welcomeChannelSecondGuildID
     );
     // Send a first mention to notify the user and store the new message
-    WelcomeChannel.send(`||<@${this.userID}>||`).then((m) => {
+    WelcomeChannel.send(`<@${this.userID}>`).then((m) => {
       this.messages.push(m);
     });
     // Send the first instructions and store the message inside the process memory
@@ -180,7 +180,7 @@ module.exports = class InitiationProcess {
     // Change the channel target to the radio channel
     this.targetChannel = await client.channels.cache.get(radioChannelID);
     // Mention the user to help him find the channel
-    await this.targetChannel.send(`||<@${this.userID}>||`).then((m) => {
+    await this.targetChannel.send(`<@${this.userID}>`).then((m) => {
       this.messages.push(m);
     });
     // Wait for the user to join the radio channel
@@ -213,6 +213,7 @@ module.exports = class InitiationProcess {
     const infos = await II.process().catch((err) => {
       if (err === "TIME") this.clearProcess("TIME");
     });
+    console.log(infos);
     if (!infos) return;
 
     // ====================================================
@@ -435,7 +436,6 @@ module.exports = class InitiationProcess {
       this.collectors.push(collector);
       // Launch the collector
       collector.on("collect", async (member) => {
-        console.log("VC Joined !");
         resolve(member);
       });
       // When the collector is finished

@@ -44,7 +44,7 @@ module.exports = {
       `Merci de rejoindre la canal vocal suivant : <#${channel.id}> dans la catégorie` +
       "``" +
       channel.parent.name.replace("/─/g", "") +
-      "`` ! \n Une fois cela fait, n'hésite pas à revenir sur ce message pour avoir de l'aide si tu as besoin !";
+      "`` ! \n Une fois cela fait, reviens sur ce message pour la suite des étapes !";
     //Create an embed
     let embed = new Discord.EmbedBuilder()
       .setColor("#0099ff")
@@ -69,7 +69,7 @@ module.exports = {
    */
   mentionMessage: function (member, channel) {
     return new Promise((resolve) => {
-      let txt = `🔴 | Vous venez de vous faire mentionner dans le canal vocal suivant : <#${channel.id}> \n merci de vous y rendre et de suivre les instructions sur le prochain message !`;
+      let txt = `🔴 | Vous venez de vous faire mentionner dans le canal texte correspondant au canal vocal suivant. : <#${channel.id}> dans la catégorie <#${channel.parentId}> \nMerci de vous y rendre et de suivre les instructions dans le message que vous y trouverez. N'attendez pas qu'une autre personne rejoigne le vocal.`;
       //Create an embed
       let embed = new Discord.EmbedBuilder()
         .setColor("#ff0000")
@@ -109,7 +109,7 @@ module.exports = {
 
       channel
         .send({
-          content: `||<@${member.user.id}>||`,
+          content: `<@${member.user.id}>`,
           embeds: [embed],
         })
         .then(async (m) => {
@@ -192,11 +192,9 @@ module.exports = {
           `❓ | Merci de rejoindre le channel <#${channelId}> et lire les consignes suivantes pour boucler ton initiation !`
         );
 
-      channel
-        .send({ embeds: [embed], content: `||<@${userID}>||` })
-        .then((m) => {
-          resolve(m);
-        });
+      channel.send({ embeds: [embed], content: `<@${userID}>` }).then((m) => {
+        resolve(m);
+      });
     });
   },
   /**
@@ -208,7 +206,8 @@ module.exports = {
       .setTitle("🎉 Félicitation vous avez terminé l'initiation ! 🎉")
       .setColor("#ff8c00")
       .setDescription(
-        "📥 | Il ne vous reste plus qu'à rejoindre le serveur pour clôturer l'activité ! \n Merci de votre participation !"
+        "📥 | Il ne vous reste plus qu'à rejoindre le serveur pour clôturer l'activité ! \n" +
+          "Une fois cela fait, ton activité sera normalement considérée comme validée ! *A moins que tu ais baclé les questions...\nMerci de votre participation !"
       )
       .setThumbnail(whiteLogo);
 

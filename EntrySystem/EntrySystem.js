@@ -53,6 +53,7 @@ module.exports = class EntrySystem {
     this.guildLeavedDetector();
     // Create a self channel for the new member
     this.channel = await this.createChannel();
+    if (!this.channel) throw new Error("Channel not created");
     // Setup a new message asking for a code
     this.msg = await sendWelcomeMessage(this.channel, this.member);
     // If the user send a code or skip the step
