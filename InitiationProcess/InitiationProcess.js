@@ -131,7 +131,7 @@ module.exports = class InitiationProcess {
     /** ########### @STEP_2 - @Join_Vocal ########### */
     // ================================================
     // Pick a random voice channel to make the user join
-    this.this.targetChannel = await this.pickRandomChannel(2);
+    this.targetChannel = await this.pickRandomChannel(2);
     // Edit the first embed with the new instructions
     await this.editEmbed(await vocalMessage(this.member, this.targetChannel));
     // Put a help button collector calling itself when it's clicked
