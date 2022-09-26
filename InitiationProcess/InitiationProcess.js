@@ -127,12 +127,11 @@ module.exports = class InitiationProcess {
     this.messages.push(await welcomeMessage(this.member, WelcomeChannel));
     this.msg = this.messages[this.messages.length - 1];
     this.nextStep();
-
     // =================================================
     /** ########### @STEP_2 - @Join_Vocal ########### */
     // ================================================
     // Pick a random voice channel to make the user join
-    this.targetChannel = await this.pickRandomChannel(2);
+    this.this.targetChannel = await this.pickRandomChannel(2);
     // Edit the first embed with the new instructions
     await this.editEmbed(await vocalMessage(this.member, this.targetChannel));
     // Put a help button collector calling itself when it's clicked
@@ -613,6 +612,7 @@ module.exports = class InitiationProcess {
       );
     // If the user leaved the process because of a time limit
     if (reason === "TIME") {
+      this.time = true;
       if (this.targetChannel) {
         if (this.targetChannel.parentId == "1001208591862206567") {
           this.targetChannel.delete();
@@ -640,7 +640,7 @@ module.exports = class InitiationProcess {
         .catch((e) => {
           console.warn("Can't send msg to user");
         });
-    } else if (reason == "LEAVE") {
+    } else if (reason == "LEAVE" && !this.time) {
       if (this.targetChannel) {
         if (this.targetChannel.parentId == "1001208591862206567") {
           this.targetChannel.delete();
