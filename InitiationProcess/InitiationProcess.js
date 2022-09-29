@@ -133,6 +133,7 @@ module.exports = class InitiationProcess {
     // Pick a random voice channel to make the user join
     this.targetChannel = await this.pickRandomChannel(2);
     // Edit the first embed with the new instructions
+    await vocalMessage(this.member, this.targetChannel);
     await this.editEmbed(await vocalMessage(this.member, this.targetChannel));
     // Put a help button collector calling itself when it's clicked
     this.buttonCollector(this.msg, true);
@@ -542,7 +543,7 @@ module.exports = class InitiationProcess {
    */
   async editEmbed(embedElementArray) {
     return new Promise((resolve, reject) => {
-      if (!this.msg) reject("No message found");
+      if (!this.msg) console.log("No message found");
       // Edit the main message
       this.msg
         .edit({
@@ -551,6 +552,10 @@ module.exports = class InitiationProcess {
         })
         .then((m) => {
           resolve(m);
+        })
+        .catch((e) => {
+          reject(e);
+          console.log(e);
         });
     });
   }

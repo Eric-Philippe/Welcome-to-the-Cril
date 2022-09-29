@@ -40,8 +40,9 @@ module.exports = {
    * @returns {Promise.<Object.<Discord.Message, Discord.ActionRowBuilder>>}
    */
   vocalMessage: function (member, channel) {
+    let channelId = channel ? channel.id : "";
     let txt =
-      `Merci de rejoindre la canal vocal suivant : <#${channel.id}> dans la catégorie` +
+      `Merci de rejoindre la canal vocal suivant : <#${channelId}> dans la catégorie` +
       "``" +
       channel.parent.name.replace("/─/g", "") +
       "`` ! \n Une fois cela fait, reviens sur ce message pour la suite des étapes !";
