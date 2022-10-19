@@ -1,5 +1,4 @@
 const { User } = require("discord.js");
-
 const FILTERS = {
   BUTTONS: {
     Only_User: function (user) {

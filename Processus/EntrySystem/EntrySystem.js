@@ -24,7 +24,7 @@ const {
 const { TIME } = require("../../TimeEnum"); // Time enum
 const CodesEntry = require("../../database/Codes.json").Codes; // Entry codes
 const FinishedUsers =
-  require("../../database/ActivitiesUsers.json").FinishedUser; // Finished users
+  require("../../database/ActivitiesUsers.json").FinishedUser; // Finished users db
 /** ##################################################################### */
 /** ############################ @Collectors ########################### */
 /** ################################################################### */
