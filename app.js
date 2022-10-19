@@ -62,12 +62,6 @@ client.on("guildMemberAdd", (member) => {
   }
 });
 
-client.on("messageCreate", async (m) => {
-  if (m.author.bot) return;
-  if (m.content === "test") {
-  }
-});
-
 client.on("interactionCreate", async (interaction) => {
   if (!interaction.isChatInputCommand()) return;
 
