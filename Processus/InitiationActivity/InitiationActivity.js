@@ -35,7 +35,7 @@ const {
 } = require("../../events/CollectorManager");
 const MessagesBuffer = require("../../MessagesBuffer");
 const { EMOTES_NUMBERS } = require("../../ressources");
-const { REACTIONS } = require("../../events/filters");
+const { REACTIONS } = require("../../events/Filters");
 const MCQ = require("../MCQ/MCQ_Class");
 const { embedResaCRIL } = require("../MCQ/MCQ_Database/embedResaCRIL");
 const { embedEnglish } = require("../MCQ/MCQ_Database/embedEnglish");
