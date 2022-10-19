@@ -1,7 +1,6 @@
 const { SlashCommandBuilder, PermissionFlagsBits } = require("discord.js");
-const fs = require("fs");
 
-const codesEntry = require("../codesEntry.json"); // BDD
+const { addCode, removeCode, getCodes } = require("../database/main"); // Database
 
 module.exports = {
   data: new SlashCommandBuilder()
@@ -44,23 +43,17 @@ module.exports = {
     if (subcommand === "add") {
       let code = interaction.options.getString("code");
       code = "#" + code;
-      if (codesEntry.CODES.includes(code))
-        return interaction.reply("⭕ | Le code existe déjà.");
-      codesEntry.CODES.push(code);
-      fs.writeFileSync("codesEntry.json", JSON.stringify(codesEntry, null, 2));
+      let i = await addCode(code);
+      if (i == -1) return interaction.reply("⭕ | Le code existe déjà.");
       interaction.reply("✅ | Le code a été ajouté.");
     } else if (subcommand === "remove") {
       let code = interaction.options.getString("code");
       code = "#" + code;
-      if (!codesEntry.CODES.includes(code))
-        return interaction.reply("⭕ | Le code n'existe pas.");
-      codesEntry.CODES.splice(codesEntry.CODES.indexOf(code), 1);
-      fs.writeFileSync("codesEntry.json", JSON.stringify(codesEntry, null, 2));
-      interaction.reply("✅ | Le code a été retiré.");
+      let i = await removeCode(code);
+      if (i == -1) return interaction.reply("⭕ | Le code n'existe pas.");
+      return interaction.reply("✅ | Le code a été retiré.");
     } else if (subcommand === "display") {
-      interaction.reply(
-        "Voici la liste des codes : " + codesEntry.CODES.join(", ")
-      );
+      interaction.reply("Voici la liste des codes : " + getCodes().join(", "));
     }
   },
 };

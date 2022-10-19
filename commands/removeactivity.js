@@ -1,7 +1,6 @@
 const { SlashCommandBuilder, PermissionFlagsBits } = require("discord.js");
-const fs = require("fs");
 
-const verifiedUsers = require("../verifiedAccount.json"); // BDD
+const { removeFinishedUser } = require("../database/main");
 
 module.exports = {
   data: new SlashCommandBuilder()
@@ -18,17 +17,9 @@ module.exports = {
     ),
   async execute(interaction) {
     let user = interaction.options.getUser("utilisateur");
-    if (!verifiedUsers.activityFinished.includes(user.id))
+    let i = await removeFinishedUser(user.id);
+    if (i == -1)
       return interaction.reply("⭕ | L'utilisateur n'est pas dans la liste.");
-
-    verifiedUsers.activityFinished.splice(
-      verifiedUsers.activityFinished.indexOf(user.id),
-      1
-    );
-    fs.writeFileSync(
-      "verifiedAccount.json",
-      JSON.stringify(verifiedUsers, null, 2)
-    );
-    interaction.reply("✅ | L'utilisateur a été retiré de la liste.");
+    return interaction.reply("✅ | L'utilisateur a été retiré de la liste.");
   },
 };

@@ -1,4 +1,4 @@
 node_modules/
 .env
-codesEntry.json
-verifiedAccount.json
+Codes.json
+ActivitiesUsers.json

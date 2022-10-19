@@ -1,0 +1,15 @@
+{
+  "dpts": [
+    { "name": "GEAR", "emoji": "📕" },
+    { "name": "GMP", "emoji": "🛠️" },
+    { "name": "GEAP", "emoji": "📗" },
+    { "name": "GCCD", "emoji": "🏗️" },
+    { "name": "INFOCOM", "emoji": "💾" },
+    { "name": "MEPH", "emoji": "🔭" },
+    { "name": "GCGP", "emoji": "🔬" },
+    { "name": "INFO", "emoji": "💻" },
+    { "name": "GEII", "emoji": "💡" },
+    { "name": "TECH DE CO", "emoji": "📈" },
+    { "name": "CASTRES CHIMIE", "emoji": "🧪" }
+  ]
+}
