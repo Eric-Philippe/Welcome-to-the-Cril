@@ -23,6 +23,9 @@ module.exports = {
     } catch (error) {
       console.error(error);
     }
-    interaction.reply(`✅ | ${amount} messages supprimés.`);
+    interaction.reply({
+      content: `✅ | ${amount} messages supprimés.`,
+      ephemeral: true,
+    });
   },
 };

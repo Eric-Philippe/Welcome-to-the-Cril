@@ -26,7 +26,7 @@ module.exports = {
    * @returns {Array} - The array of the codes
    */
   getCodes: () => {
-    return CODES_FILE.CODES;
+    return CODES_FILE.Codes;
   },
   /**
    * Add the user id given in the Pending Users Array
@@ -82,7 +82,7 @@ module.exports = {
    * @returns {Number} -1 if the code is already in the array | Codes.length if the code is not in the array
    */
   async addCode(code) {
-    let i = CODES_FILE.Codes.findIndex((e) => e === userId);
+    let i = CODES_FILE.Codes.findIndex((e) => e === code);
     if (i != -1) return i;
     CODES_FILE.Codes.push(code);
     await updateFile();
@@ -94,7 +94,7 @@ module.exports = {
    * @returns {Number} -1 if the code is not in the array | Codes.length if the code is in the array
    */
   async removeCode(code) {
-    let i = CODES_FILE.Codes.findIndex((e) => e === userId);
+    let i = CODES_FILE.Codes.findIndex((e) => e === code);
     if (i == -1) return i;
     CODES_FILE.Codes.splice(i, 1);
     await updateFile();

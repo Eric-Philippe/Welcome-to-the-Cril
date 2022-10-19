@@ -9,7 +9,7 @@ const { DISCORD_TOKEN, mainServerId, initServerId } = require("./env.js");
 
 const EntrySystem = require("./Processus/EntrySystem/EntrySystem");
 const InitiationActivity = require("./Processus/InitiationActivity/InitiationActivity");
-const { getPendingUsers } = require("./database/main.js");
+const { getPendingUsers, removePendingUser } = require("./database/main.js");
 
 commandsLoad();
 client.once("ready", () => {
@@ -18,7 +18,10 @@ client.once("ready", () => {
 });
 
 client.on("guildMemberAdd", (member) => {
-  if (client.bypassEntry.includes(member.user.id)) return;
+  if (client.bypassEntry.includes(member.user.id)) {
+    removePendingUser(member.user.id);
+    return;
+  }
   InfoLogs.addLog(`Nouveau membre sur ${member.guild.name}`, member.user);
   const mainServer = client.guilds.cache.get(mainServerId);
   const mainServerMembersCache = mainServer.members.cache;
