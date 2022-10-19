@@ -15,7 +15,7 @@ const {
   createVoiceJoinedCollector,
   VoiceJoinedCollector,
 } = require("./VoiceJoinedCollector");
-const FILTERS = require("./filters");
+const FILTERS = require("./Filters");
 const ButtonsRecursiveCollector = require("./ButtonsRecursiveCollector");
 const ReactionsCollector = require("./ReactionsCollector");
 module.exports = {
