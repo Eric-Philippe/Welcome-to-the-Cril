@@ -11,5 +11,6 @@ const client = new Client({
     GatewayIntentBits.MessageContent,
   ],
 });
+// Test
 
 exports.client = client;
