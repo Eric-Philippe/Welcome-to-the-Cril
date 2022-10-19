@@ -1,7 +1,6 @@
 const { GuildMember, Guild } = require("discord.js");
 const {
   createSelfChannel,
-  pingId,
   randomColor,
   pickChannelForMember,
 } = require("../../utils/utils");
@@ -12,7 +11,6 @@ const {
   codeUserRoleId,
   etuRoleSecondId,
   etuRole,
-  discordProRole,
   firstServerInvite,
   cleanFirstServerInvite,
   fishRoleId,
@@ -32,7 +30,6 @@ const {
   VoiceJoinedCollectorWrapper,
   ReactionsCollector,
   ButtonsRecursiveCollector,
-  GuildJoinedCollector,
   GuildLeavedCollectorWrapper,
   GuildJoinedCollectorWrapper,
 } = require("../../events/CollectorManager");
