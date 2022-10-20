@@ -26,7 +26,7 @@ module.exports = {
       )
       .setColor("#BD0000")
       .setThumbnail(gifAlert);
-    return await channel.send({ embeds: [embedInstructions] });
+    return await channel.send({ embeds: [embedInstructions, embedAlert] });
   },
   /**
    *
