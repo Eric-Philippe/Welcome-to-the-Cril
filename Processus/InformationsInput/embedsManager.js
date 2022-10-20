@@ -16,9 +16,16 @@ module.exports = {
         "On commence avec vos prénom, nom et département de l'IUT pour vous identifier sur le serveur. \n Cliquez sur le bouton vert pour commencer \n\n ⚠️ | **Pensez à bien lire tout ce que vous voyez car si vous êtes bloqué, c'est très probablement que vous avez __lu de travers les consignes ...__ \n ||ou bien vous ne les avez juste pas lus.|| \n ➡️ Ce par quoi vous serez tenu comme seul fautif.**"
       )
       .setColor("#BD0000")
-      .setThumbnail(gifAlert)
+      //.setThumbnail(gifAlert)
       .setTimestamp();
 
+    let embedAlert = new EmbedBuilder()
+      .setTitle("⚠️ ATTENTION ⚠️ ")
+      .setDescription(
+        "⚠️ | INFORMATION : Si vous faites cette activité sur téléphone, suite à un bug récent de l'application Discord, merci de relancer l'appli pour passer à la suite si vous vous retrouvez bloqué. Si le problème persiste, envoyez une capture d'écran à cril.langues@iut-tlse3.fr - ou passez sur un ordinateur"
+      )
+      .setColor("#BD0000")
+      .setThumbnail(gifAlert);
     return await channel.send({ embeds: [embedInstructions] });
   },
   /**
