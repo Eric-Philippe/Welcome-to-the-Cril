@@ -63,7 +63,7 @@ module.exports = {
         { name: "Département : ", value: values[2], inline: true }
       )
       .setColor("#B9FF00")
-      .setThumbnail(member.user.avatarURL() || chickenGif);
+      .setThumbnail(member.user.avatarURL() || gifChicken);
 
     // Add the buttons
     let row = new ActionRowBuilder().addComponents(
