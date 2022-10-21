@@ -331,10 +331,14 @@ module.exports = class InitiationsActivity {
       try {
         if (this.reason === "time" || this.reason === "kicked") {
           if (this.member.user.dmChannel) {
-            this.member.user.dmChannel.send({
-              embeds: [this.embeds.timeOutEmbed()],
-              content: firstServerInvite,
-            });
+            try {
+              this.member.user.send({
+                embeds: [this.embeds.timeOutEmbed()],
+                content: firstServerInvite,
+              });
+            } catch (error) {
+              console.error(error);
+            }
           }
         }
         if (this.intervalId) clearInterval(this.intervalId);
