@@ -123,7 +123,7 @@ module.exports = class EmbedsManager {
       .setColor(this.color)
       .setTitle("🔊 | Test de son ! ")
       .setDescription(
-        "Merci de rejoindre le canal vocal nommé 🔊 radio dans la catégorie ``🪙 JUST CHATTING`` sur votre gauche !"
+        "Merci de rejoindre le canal vocal nommé 🔊 radio dans la catégorie ``🪙 JUST CHATTING`` sur votre gauche ! - Vous allez ensuite être mentionné, trouvez la mention et rejoignez le channel textuel du dit vocal pour continuer !"
       );
     return embed;
   }

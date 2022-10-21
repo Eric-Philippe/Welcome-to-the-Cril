@@ -83,7 +83,7 @@ module.exports = {
       .setTimestamp()
       .setTitle("Savez-vous utiliser Discord et RésaCril ?")
       .setDescription(
-        `🟩 | Si **tu sais utiliser Discord et Résacril**, clique sur le bouton vert "Oui" \n\n` +
+        `🟩 | Si **tu sais utiliser Discord et Résacril**, clique sur le bouton vert "Oui" \n - *Pour faire une découverte de Discord avant de commencer ton activité ou ton coaching, considère que cela te prendra au moins 10 min.\n\n` +
           '🟥 | Si **tu ne sais pas utiliser Discord et Résacril**, clique sur le bouton rouge "Non" \n\n' +
           "⚠️ | *Si tu ne sais pas utiliser Discord et que tu cliques tout de même sur Oui, en cas de quelconque problème technique tu seras considéré comme **seul fautif**.*"
       )
