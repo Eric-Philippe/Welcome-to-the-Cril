@@ -20,6 +20,7 @@ module.exports = {
     let embed = new EmbedBuilder()
       .setColor("#ff0000")
       .setDescription(interaction.options.getString("message"));
-    await interaction.reply({ embeds: [embed] });
+    await interaction.channel.send({ embeds: [embed] });
+    await interaction.reply({ content: "Done", ephemeral: true });
   },
 };
