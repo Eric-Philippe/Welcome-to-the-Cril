@@ -121,6 +121,7 @@ module.exports = class EntrySystem {
 
         // Modal Receiver
         if (submitted) {
+          if (!submitted.fields) return;
           let code = submitted.fields.getTextInputValue("code");
           var txt;
           if (code.includes("#")) {

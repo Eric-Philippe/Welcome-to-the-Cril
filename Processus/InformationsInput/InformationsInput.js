@@ -78,12 +78,14 @@ module.exports = async function InformationsInput(channel, member, time) {
       let firstname = submitted.fields.getTextInputValue("firstNameInput");
       let lastname = submitted.fields.getTextInputValue("lastNameInput");
       // Create the select department menu
+      if (submitted.replied) return;
       messagesBuffer.add(
         await submitted.reply({
           content: "Sélectionner votre Département dans le menu déroulant",
           components: [await createDptMenu()],
         })
       );
+
       // Wait for the selection
       let departement = await MenusCollector(
         FILTERS.MENUS.Only_User(member.user),
