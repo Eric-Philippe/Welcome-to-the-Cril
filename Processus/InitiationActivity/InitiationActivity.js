@@ -282,8 +282,6 @@ module.exports = class InitiationsActivity {
       this.reason = "clean_exit";
       yield "ACTIVITY_FINISHED";
     } catch (err) {
-      console.log("Erreur !");
-      console.log(err);
       if (err.message === "time") {
         this.reason = "time";
       }
