@@ -120,18 +120,22 @@ module.exports = class EntrySystem {
           });
 
         // Modal Receiver
-        let code = submitted.fields.getTextInputValue("code");
-        let txt;
-        if (code.includes("#")) {
-          if (CodesEntry.includes(code)) {
-            addPendingUser(this.member.user.id);
-            return this.__sendServerInvite__(submitted);
+        if (submitted) {
+          let code = submitted.fields.getTextInputValue("code");
+          var txt;
+          if (code.includes("#")) {
+            if (CodesEntry.includes(code)) {
+              addPendingUser(this.member.user.id);
+              return this.__sendServerInvite__(submitted);
+            } else {
+              txt =
+                "Code erroné ! Merci d'entrer un code valide du format suivant : #CODEAB";
+            }
           } else {
-            txt =
-              "Code erroné ! Merci d'entrer un code valide du format suivant : #CODEAB";
+            txt = "Merci d'entrer un code démarrant par un # !";
           }
         } else {
-          txt = "Merci d'entrer un code démarrant par un # !";
+          txt = "Merci d'entrer un code !";
         }
         return submitted.reply({ content: txt }).catch((err) => {});
 
