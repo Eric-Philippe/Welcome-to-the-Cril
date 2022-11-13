@@ -171,4 +171,16 @@ module.exports = class EmbedsManager {
     }
     return embed;
   }
+  /**
+   * End DM User
+   */
+  endDMEmbed() {
+    let embed = new EmbedBuilder()
+      .setColor(this.color)
+      .setTitle("C'est presque terminé !")
+      .setDescription(
+        "Bravo! Vous avez terminé l'Activité Découverte et rejoint le serveur du Centre de Langues. Vous avez maintenant accès à tous les channels pour faire vos activités et coaching en ligne. \nRéférez-vous au channel Support pour toute question. "
+      );
+    return embed;
+  }
 };

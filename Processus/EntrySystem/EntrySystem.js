@@ -113,10 +113,11 @@ module.exports = class EntrySystem {
         let submitted = await i
           .awaitModalSubmit({
             time: TIME.ENTRY,
-            filter: (i) => i.user.id === this.member.user.id,
+            filter: (i) =>
+              i.user.id === this.member.user.id && i.customId === "modal_code",
           })
           .catch((reason) => {
-            this.clearSystem(reason);
+            this.clearSystem("time");
           });
 
         // Modal Receiver
@@ -126,6 +127,7 @@ module.exports = class EntrySystem {
           var txt;
           if (code.includes("#")) {
             if (CodesEntry.includes(code)) {
+              this.success = true;
               addPendingUser(this.member.user.id);
               return this.__sendServerInvite__(submitted);
             } else {
@@ -135,10 +137,9 @@ module.exports = class EntrySystem {
           } else {
             txt = "Merci d'entrer un code démarrant par un # !";
           }
-        } else {
-          txt = "Merci d'entrer un code !";
+          if (submitted)
+            return submitted.reply({ content: txt }).catch((err) => {});
         }
-        return submitted.reply({ content: txt }).catch((err) => {});
 
         /** ###################################### */
         // If the Direct Entry Button is clicked
@@ -153,7 +154,7 @@ module.exports = class EntrySystem {
     });
 
     collector.on("end", (collected) => {
-      if (collected.size === 0) {
+      if (!this.success) {
         this.clearSystem("time");
       }
     });
@@ -195,6 +196,7 @@ module.exports = class EntrySystem {
       this.clearSystem(reason);
     });
 
+    if (!answer) return;
     if (answer.customId === "yes") {
       answer.deferUpdate();
       this.__endEntry__();
@@ -216,6 +218,8 @@ module.exports = class EntrySystem {
     ).catch((reason) => {
       this.clearSystem(reason);
     });
+
+    if (!myInfos) return this.clearSystem("time");
 
     this.member.roles.add([etuRole, discordProRole]);
     this.member.setNickname(myInfos.join(" "));
@@ -251,20 +255,28 @@ module.exports = class EntrySystem {
         });
         this.clearSystem(reason);
       }
-    } catch (error) {
-      console.error(error);
-    }
+    } catch (error) {}
   }
   /**
    * Cleaner of the System, singleton scheme
    * @param {String} reason
    */
-  clearSystem(reason) {
+  async clearSystem(reason) {
     if (this.cleaned) return;
     this.cleaned = true;
     if (reason == "end_activity_launched")
       this.member.kick("Activité Initiation Starting");
-    if (reason == "time") this.member.kick("TimeOut");
+    if (reason == "time") {
+      await this.member.user
+        .send({
+          content:
+            "Vous êtes resté trop longtemps inactif dans l'entrée du serveur du CRIL, merci de recommencer ainsi que de finaliser votre entrée.",
+        })
+        .catch((err) => {});
+
+      await this.member.kick("TimeOut");
+    }
+
     try {
       if (this.channel) this.channel.delete();
       this.messagesBuffer.clear();

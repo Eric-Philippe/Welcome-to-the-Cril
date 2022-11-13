@@ -67,7 +67,8 @@ module.exports = async function InformationsInput(channel, member, time) {
       const submitted = await interaction
         .awaitModalSubmit({
           time: time,
-          filter: (i) => i.user.id === interaction.user.id,
+          filter: (i) =>
+            i.user.id === interaction.user.id && i.customId === "modal_name",
         })
         .catch((reason) => {
           reject(new Error("time"));
@@ -77,12 +78,17 @@ module.exports = async function InformationsInput(channel, member, time) {
       if (!submitted) return;
       let firstname = submitted.fields.getTextInputValue("firstNameInput");
       let lastname = submitted.fields.getTextInputValue("lastNameInput");
+      if (!firstname || !lastname) return;
       // Create the select department menu
       if (submitted.replied) return;
       messagesBuffer.add(
-        await submitted.reply({
+        await submitted.channel.send({
           content: "Sélectionner votre Département dans le menu déroulant",
-          components: [await createDptMenu()],
+        })
+      );
+      messagesBuffer.add(
+        await submitted.reply({
+          components: [createDptMenu()],
         })
       );
 

@@ -2,7 +2,7 @@ const { ActionRowBuilder, SelectMenuBuilder } = require("discord.js");
 const Departments = require("./Departments.json").dpts;
 
 module.exports = {
-  createDptMenu: async function () {
+  createDptMenu: function () {
     let menu = new SelectMenuBuilder()
       .setCustomId("select-dpt")
       .setPlaceholder("Cliquez sur moi !")

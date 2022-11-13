@@ -254,7 +254,7 @@ module.exports = class InitiationsActivity {
       }
 
       await this.channel.send({
-        embeds: [await this.embeds.endEmbed()],
+        embeds: [await this.embeds.endEmbed(this.areYouACode)],
         content: cleanFirstServerInvite,
       });
 
@@ -278,6 +278,14 @@ module.exports = class InitiationsActivity {
         client.bypassEntry.indexOf(this.member.user.id),
         1
       );
+
+      if (this) {
+        this.member.user
+          .send({
+            embeds: [await this.embeds.endDMEmbed(this.areYouACode)],
+          })
+          .catch((e) => {});
+      }
 
       this.reason = "clean_exit";
       yield "ACTIVITY_FINISHED";
@@ -322,26 +330,22 @@ module.exports = class InitiationsActivity {
     }
   }
 
-  cleanProcess() {
+  async cleanProcess() {
     if (!this.cleaned) {
       this.cleaned = true;
       logEnd(this.reason, this);
       try {
         if (this.reason === "time" || this.reason === "kicked") {
-          if (this.member.user.dmChannel) {
-            try {
-              this.member.user.send({
-                embeds: [this.embeds.timeOutEmbed()],
-                content: firstServerInvite,
-              });
-            } catch (error) {
-              console.error(error);
-            }
-          }
+          await this.member.user
+            .send({
+              embeds: [this.embeds.timeOutEmbed()],
+              content: firstServerInvite,
+            })
+            .catch((e) => {});
         }
         if (this.intervalId) clearInterval(this.intervalId);
-        if (this.channel.deletable) this.channel.delete();
-        if (this.member.kickable) this.member.kick(this.reason);
+        if (this.channel.deletable) await this.channel.delete();
+        if (this.member.kickable) await this.member.kick(this.reason);
         this.mBuffer.clear();
       } catch (e) {
         console.log(e);

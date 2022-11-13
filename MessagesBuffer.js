@@ -22,15 +22,11 @@ module.exports = class MessagesBuffer {
   async clear() {
     let i = 0;
     for (const message of this.messagesBuffer) {
-      try {
-        if (message && message.channel && message.deletable) {
-          message
-            .delete()
-            .then(() => i++)
-            .catch((err) => {});
-        }
-      } catch (error) {
-        console.error(error);
+      if (message && message.channel && message.deletable) {
+        message
+          .delete()
+          .then(() => i++)
+          .catch((err) => {});
       }
     }
     this.messagesBuffer = [];
