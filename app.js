@@ -11,10 +11,14 @@ const EntrySystem = require("./Processus/EntrySystem/EntrySystem");
 const InitiationActivity = require("./Processus/InitiationActivity/InitiationActivity");
 const { getPendingUsers, removePendingUser } = require("./database/main.js");
 
+const AutoClean = require("./autoClean.js");
+
 commandsLoad();
 client.once("ready", () => {
   client.user.setActivity("👋 Salutations, Voyageurs !");
   console.log(`%cLogged on ${client.user.tag}!`, "color: #c00006;");
+  const autoClean = new AutoClean(client, AutoClean.getAllOption());
+  autoClean.run();
 });
 
 client.on("guildMemberAdd", (member) => {

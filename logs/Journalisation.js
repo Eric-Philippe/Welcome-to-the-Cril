@@ -25,6 +25,25 @@ module.exports = class Journalisation {
     );
   }
   /**
+   * Add Channels logs to the journal
+   * @param {String} log
+   */
+  addBasicLogs(log) {
+    // Get the date in a format yyyy-mm-dd hh:mm:ss
+    let date = new Date();
+    let dateStr = `[ ${date.getFullYear()}/${
+      date.getMonth() + 1
+    }/${date.getDate()} ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()} ]`;
+    fs.appendFile(
+      `./logs/${this.title}.log`,
+      dateStr + " - " + log + "\n",
+      (err) => {
+        if (err) throw err;
+      }
+    );
+  }
+
+  /**
    * Give the user the log file
    * @param {ChatInputCommandInteraction} i
    */
