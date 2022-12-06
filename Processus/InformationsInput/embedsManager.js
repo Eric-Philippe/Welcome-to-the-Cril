@@ -22,7 +22,7 @@ module.exports = {
     let embedAlert = new EmbedBuilder()
       .setTitle("⚠️ ATTENTION ⚠️ ")
       .setDescription(
-        "⚠️ | INFORMATION : Si vous faites cette activité sur téléphone, suite à un bug récent de l'application Discord, merci de relancer complètement l'appli pour passer à la suite si vous vous retrouvez bloqué. Si le problème persiste, envoyez une capture d'écran à cril.langues@iut-tlse3.fr - ou passez sur un ordinateur"
+        "⚠️ | Attention! \nSi au cours de l'activité, quelque chose ne fonctionne pas, relancez votre appli discord / quittez le serveur et recommencez \nEn cas d'inactivité de plus de 10 minutes, vous serez automatiquement expulsé et pourrez recommencer depuis le début"
       )
       .setColor("#BD0000")
       .setThumbnail(gifAlert);

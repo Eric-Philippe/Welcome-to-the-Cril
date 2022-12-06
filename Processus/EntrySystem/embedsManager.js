@@ -67,6 +67,9 @@ module.exports = {
       .setDescription(
         "Cliquez sur REJOINDRE pour aller dans le serveur de Découverte du Discord CRIL"
       );
+    if (interaction.replied)
+      return await interaction.editReply({ embeds: [embed] });
+
     return await interaction.reply({
       embeds: [embed],
       content: mainSecondServerInvite,

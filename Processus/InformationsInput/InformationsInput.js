@@ -86,11 +86,17 @@ module.exports = async function InformationsInput(channel, member, time) {
           content: "Sélectionner votre Département dans le menu déroulant",
         })
       );
-      messagesBuffer.add(
-        await submitted.reply({
-          components: [createDptMenu()],
-        })
-      );
+      if (submitted.replied) {
+        submitted.editReply({
+          content: "Sélectionner votre Département dans le menu déroulant",
+        });
+      } else {
+        messagesBuffer.add(
+          await submitted.reply({
+            components: [createDptMenu()],
+          })
+        );
+      }
 
       // Wait for the selection
       let departement = await MenusCollector(
@@ -104,6 +110,11 @@ module.exports = async function InformationsInput(channel, member, time) {
         }
       });
       // Ask the user to validate the informations
+      if (!departement) departement = "Inconnu";
+      if (!lastname) lastname = "Inconnu";
+      if (!firstname) firstname = "Inconnu";
+      // Check if the channel is still available
+      if (!channel) return;
       messagesBuffer.add(
         await sendValidationEmbed(channel, member, [
           firstname,
