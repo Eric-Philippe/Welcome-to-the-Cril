@@ -134,7 +134,7 @@ module.exports = class EntrySystem {
               txt = `Le code entré (${code}) est erroné ! Merci d'entrer un code valide du format suivant : #CODEAB`;
             }
           } else {
-            txt = `Merci d'entrer un code démarrant par un # ! Le votre (${code}) ne commence pas par un # !})`;
+            txt = `Merci d'entrer un code démarrant par un # ! Le votre (${code}) ne commence pas par un # !`;
           }
           if (submitted)
             return submitted.reply({ content: txt }).catch((err) => {});
